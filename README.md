@@ -16,7 +16,7 @@ Aplikasi web berbasis **Django** untuk memprediksi tingkat obesitas seseorang me
 
 ## Deskripsi
 
-Sistem ini mengklasifikasikan tingkat obesitas berdasarkan parameter kesehatan seperti usia, tinggi badan, berat badan, kebiasaan makan, dan aktivitas fisik menggunakan pendekatan probabilistik Naive Bayes.
+Sistem ini mengklasifikasikan tingkat obesitas berdasarkan parameter kesehatan seperti usia, tinggi badan, berat badan, kebiasaan makan, dan aktivitas fisik menggunakan pendekatan K-Nearest Neighboor.
 
 ---
 
@@ -38,10 +38,10 @@ Sistem ini mengklasifikasikan tingkat obesitas berdasarkan parameter kesehatan s
 
 ```
 obesity-prediction-naive-bayes/
-├── bayes_classifier/       # App utama klasifikasi Naive Bayes
-├── classifier/             # Konfigurasi project Django
-├── manage.py               # Entry point Django
-├── requirements.txt        # Daftar dependencies
+├── knn_classifier/       
+├── classifier/             
+├── manage.py               
+├── requirements.txt        
 └── .gitignore
 ```
 
@@ -52,8 +52,8 @@ obesity-prediction-naive-bayes/
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/muhammadalimurtadho05/obesity-prediction-naive-bayes.git
-cd obesity-prediction-naive-bayes
+git clone https://github.com/muhammadalimurtadho05/obesity-prediction-knn.git
+cd obesity-prediction-knn
 ```
 
 ### 2. Install Dependencies
@@ -80,8 +80,8 @@ http://127.0.0.1:8000/
 ## Fitur
 
 - Input data kesehatan pengguna
-- Prediksi tingkat obesitas menggunakan Naive Bayes
-- Tampilan hasil prediksi beserta probabilitas
+- Prediksi tingkat obesitas menggunakan KNN
+- Tampilan hasil prediksi
 - Visualisasi data dan hasil klasifikasi
 
 ---
@@ -96,4 +96,3 @@ http://127.0.0.1:8000/
 | Obesity  | Obesitas |
 
 ---
-"# obesity-prediction-knn" 
