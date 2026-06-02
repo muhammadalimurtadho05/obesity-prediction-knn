@@ -1,4 +1,4 @@
-# Obesity Prediction - Naive Bayes
+# Obesity Prediction - K-Nearest Neighboor
 
 >Online view : [mungkinkamuobes.vercel.app](https://mungkinkamuobes.vercel.app)
 
