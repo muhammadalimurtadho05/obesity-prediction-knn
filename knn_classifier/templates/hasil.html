@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results - ObesityPredict AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="{% static 'css/modern.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-brand">
+                <i data-lucide="activity"></i> Obesity Risk Classifier
+            </a>
+            <ul class="navbar-menu">
+                <li><a href="/" class="nav-link">Beranda</a></li>
+                <li><a href="/test" class="nav-link">Test Klasifikasi</a></li>
+                <li><a href="/hasil" class="nav-link active">Hasil</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container-main">
+        <div class="card result-card">
+            <div class="result-badge">Hasil Klasifikasi</div>
+            <h1 class="result-main">{{ prediksi }}</h1>
+            <p class="result-meta">Prediksi didasarkan pada data input yang telah dikirimkan menggunakan algoritma Naive Bayes.</p>
+        </div>
+
+        <div class="form-grid">
+            <!-- Data Summary -->
+            <div class="card">
+                <div class="card-header">
+                    <i data-lucide="database" style="color: var(--primary);"></i>
+                    <h2>Data Input</h2>
+                </div>
+                <div class="form-body" style="padding: 0;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th style="text-align: right;">Nilai</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for key, value in sample_raw.items %}
+                            <tr>
+                                <td class="param-name">{{ key }}</td>
+                                <td class="param-value">{{ value }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        
+        </div>
+
+        <div class="btn-group-center">
+            <a href="/test" class="btn-secondary">
+                <i data-lucide="rotate-ccw"></i> Ulangi Test
+            </a>
+            <a href="/" class="btn-primary" style="margin-left: 1rem;">
+                <i data-lucide="home"></i> Kembali ke Beranda
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ObesityPredict AI - Naive Bayes Classifier Project.</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Animate probability bars
+        document.addEventListener('DOMContentLoaded', () => {
+            const probValues = document.querySelectorAll('.prob-value');
+            const probBars = document.querySelectorAll('.prob-bar-fill');
+
+            probValues.forEach((el, index) => {
+                const rawValue = el.getAttribute('data-value');
+                // Convert value to percentage string if it's not already
+                let percentage = parseFloat(rawValue);
+                if (percentage <= 1) percentage = percentage * 100;
+                
+                const target = percentage.toFixed(1);
+                
+                // Animate text
+                let current = 0;
+                const timer = setInterval(() => {
+                    current += target / 50;
+                    if (current >= target) {
+                        el.innerText = target + '%';
+                        clearInterval(timer);
+                    } else {
+                        el.innerText = current.toFixed(1) + '%';
+                    }
+                }, 20);
+
+                // Animate bar
+                setTimeout(() => {
+                    probBars[index].style.width = target + '%';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>
