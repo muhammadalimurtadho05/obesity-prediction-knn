@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from classifier.knn_model import knn_model
 
 # Create your views here.
+def home(request):
+    return render(request, 'index.html', {'nama':'Ali'})
 def test(request):
     return render(request, 'form.html', {'nama':'Ali'})
 
@@ -26,7 +28,7 @@ def hasil(request):
             "MTRANS": request.POST.get('mtrans')
         }
         m = knn_model()
-        prediksi = m.testing(test_raw)
+        prediksi = m.predict(test_raw)
         return render(request, 'hasil.html', {'prediksi':prediksi, 'sample_raw':test_raw})
         
         # knn_model.training_dataset()
