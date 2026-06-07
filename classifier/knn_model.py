@@ -55,8 +55,6 @@ class knn_model:
         
         distances.sort(key=lambda x: x[0])
         knn = distances[:k]
-        for kls in knn:
-            print(kls)
         votes = {}
         for _, label in knn:
             if label in votes:
