@@ -57,7 +57,10 @@ class knn_model:
         knn = distances[:k]
         votes = {}
         for _, label in knn:
-            votes[label] = votes.get(label, 0) + 1
+            if label in votes:
+                votes[label] += 1
+            else:
+                votes[label] = 1
         predicted_encoded = max(votes, key=votes.get)
 
         # Decode hasil prediksi
