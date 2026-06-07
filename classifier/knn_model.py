@@ -37,7 +37,7 @@ class knn_model:
             distances.append((dist, row[target]))
         return distances
     
-    def predict(self, test_row :dict, k :int = 3):
+    def predict(self, test_row :dict, k :int = 5):
         label_encoders, label_decoders, df_encoded = self.labelEncoding()
         
         test_encoded = {}
@@ -55,6 +55,8 @@ class knn_model:
         
         distances.sort(key=lambda x: x[0])
         knn = distances[:k]
+        for kls in knn:
+            print(kls)
         votes = {}
         for _, label in knn:
             if label in votes:
